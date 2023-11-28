@@ -3,7 +3,8 @@ Posture Detection with Mediapipe and OpenCV
 Overview
 This project aims to develop a real-time posture detection system using computer vision techniques. It utilizes a front-facing camera and the MediaPipe framework to detect and analyze the user's posture, particularly focusing on the sitting posture. The system provides visual feedback to encourage better ergonomic practices, especially for individuals who spend prolonged periods at a desk.
 
-Features
+Features:
+
 **Real-Time Posture Detection:** Utilizes a camera to capture video feed and analyze posture in real-time.
 
 **Pose Estimation:** Leverages MediaPipe's pose estimation capabilities to identify key body landmarks.
