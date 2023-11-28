@@ -17,18 +17,8 @@ MediaPipe
 NumPy
 
 Installation
-Clone the Repository
-sh
-Copy code
-git clone https://github.com/your-username/posture-detection.git
-Install Dependencies
-sh
-Copy code
 pip install opencv-python mediapipe numpy
 Usage
 To start the posture detection, simply run the posture_detection.py script:
-
-sh
-Copy code
 python posture_detection.py
 Ensure your environment has good lighting and the camera is positioned to capture your upper body from the front.
