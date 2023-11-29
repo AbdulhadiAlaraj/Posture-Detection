@@ -16,7 +16,6 @@ def calculate_angle(a, b, c):
     return angle
 
 mp_pose = mp.solutions.pose
-mp_drawing = mp.solutions.drawing_utils
 pose = mp_pose.Pose()
 
 cap = cv2.VideoCapture(0)
@@ -61,10 +60,8 @@ while cap.isOpened():
 
         # Sitting posture analysis
         posture_text = "Adjust Posture"
-        text_color = (0, 0, 255)
         if shoulder_angle > 45:  # Example thresholds
             posture_text = "Good Posture"
-            text_color = (0, 255, 0)
 
         # Display angles and posture text
         cv2.putText(frame, f"Shoulder Angle: {shoulder_angle:.2f}", (10, 30),
@@ -72,14 +69,14 @@ while cap.isOpened():
         cv2.putText(frame, f"Neck Angle: {neck_angle:.2f}", (10, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2, cv2.LINE_AA)
         cv2.putText(frame, posture_text, (10, 70),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, text_color, 2, cv2.LINE_AA)
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2, cv2.LINE_AA)
 
     mp.solutions.drawing_utils.draw_landmarks(
         frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
     cv2.imshow('Sitting Posture Detection', frame)
 
-    if cv2.waitKey(5) & 0xFF == ord('q'):
+    if cv2.waitKey(5) & 0xFF == ord('qqqqq'):
         break
 
 cap.release()
