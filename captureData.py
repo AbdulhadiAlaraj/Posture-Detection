@@ -7,6 +7,7 @@ import mediapipe as mp
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 mp_drawing = mp.solutions.drawing_utils
+video_path = 'path_to_your_video.mp4'
 class_name = "Proper"
 key = 0
 cap = cv2.VideoCapture(0)
@@ -66,4 +67,3 @@ while cap.isOpened():
 cap.release()
 pose.close()
 cv2.destroyAllWindows()
-#testing venv ignore
