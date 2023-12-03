@@ -9,7 +9,6 @@ pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 mp_drawing = mp.solutions.drawing_utils
 video_path = 'path_to_your_video.mp4'
 class_name = "Proper"
-key = 0
 cap = cv2.VideoCapture(0)
 # Check if the camera opened successfully.
 if not cap.isOpened():
@@ -49,21 +48,21 @@ while cap.isOpened():
                     csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                     csv_writer.writerow(landmarks)
                 print("coords.csv has been created.")
-                key=1
                 cap.release()
                 cv2.destroyAllWindows()
         except AttributeError:
             print("No landmarks to write to coords.csv.")
-    if results.pose_landmarks and key==0:
-        poses = results.pose_landmarks.landmark
-        pose_row = list(np.array([[landmark.x, landmark.y, landmark.z, landmark.visibility] for landmark in poses]).flatten())
-        pose_row.insert(0, class_name)
-        with open('coords.csv', mode='a', newline='') as f:
-                    csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                    csv_writer.writerow(pose_row)
-    cv2.imshow('Live Pose Tracking', frame)
-    if cv2.waitKey(5) & 0xFF == ord('q'):
-        break
+    else:
+        if results.pose_landmarks:
+            poses = results.pose_landmarks.landmark
+            pose_row = list(np.array([[landmark.x, landmark.y, landmark.z, landmark.visibility] for landmark in poses]).flatten())
+            pose_row.insert(0, class_name)
+            with open('coords.csv', mode='a', newline='') as f:
+                        csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                        csv_writer.writerow(pose_row)
+        cv2.imshow('Live Pose Tracking', frame)
+        if cv2.waitKey(5) & 0xFF == ord('q'):
+            break
 cap.release()
 pose.close()
 cv2.destroyAllWindows()
