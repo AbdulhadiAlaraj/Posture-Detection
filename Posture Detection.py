@@ -22,7 +22,7 @@ while cap.isOpened():
     if results.pose_landmarks:
 
         landmarks = results.pose_landmarks.landmark
-        pose_data = np.array([[landmark.x, landmark.y, landmark.z] for landmark in landmarks]).flatten()
+        pose_data = np.array([[landmark.x, landmark.y, landmark.z, landmark.visibility] for landmark in landmarks]).flatten()
 
         posture_class = model.predict(pose_data.reshape(1, -1))[0]
         posture_text = "Good Posture" if posture_class == 1 else "Adjust Posture"
